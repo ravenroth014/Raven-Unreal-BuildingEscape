@@ -10,7 +10,7 @@
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class BUILDINGESCAPE_API UOpenDoor : public UActorComponent
 {
-GENERATED_BODY()
+	GENERATED_BODY()
 
 public:	
 	// Sets default values for this component's properties
@@ -32,6 +32,5 @@ private:
 	UPROPERTY(EditAnywhere)
 	ATriggerVolume* PressurePlate;
 
-	UPROPERTY(EditAnywhere)
 	AActor* ActorThatOpens; // Remember pawn inherits from Actor
 };
