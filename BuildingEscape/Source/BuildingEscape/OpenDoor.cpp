@@ -48,6 +48,7 @@ void UOpenDoor::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompon
 void UOpenDoor::OpenDoor()
 {	
 	// Set the door rotation.
+	if (!Owner) { return; }
 	Owner->SetActorRotation(FRotator(0.0f, OpenAngle, 0.0f));
 }
 
@@ -55,7 +56,8 @@ void UOpenDoor::OpenDoor()
 void UOpenDoor::CloseDoor()
 {
 	// Set the door rotation.
-	Owner->SetActorRotation(FRotator(0.0f, 0.0f, 0.0f));
+	if(!Owner) {return;}
+		Owner->SetActorRotation(FRotator(0.0f, 0.0f, 0.0f));
 }
 
 float UOpenDoor::GetTotalMassOfActorsOnPlate()
@@ -64,6 +66,8 @@ float UOpenDoor::GetTotalMassOfActorsOnPlate()
 
 	// Find all the overlapping actors
 	TArray<AActor*> OverlappingActors;
+	
+	if (!PressurePlate) { return TotalMass; }
 	PressurePlate->GetOverlappingActors(OUT OverlappingActors);
 
 	// Iterate through them adding their masses
